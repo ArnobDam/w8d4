@@ -4,7 +4,10 @@ Function.prototype.myThrottle = function (interval) {
         // console.log(tooSoon)
         if (!tooSoon) {
             tooSoon = true;
-            setTimeout(() => { tooSoon = false }, interval)
+            setTimeout(() => { 
+                tooSoon = false 
+                return this();
+            }, interval)
             this.myThrottle(interval)
         }
     }
