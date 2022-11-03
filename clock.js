@@ -1,7 +1,7 @@
 class Clock {
     constructor() {
         this.date = new Date();
-        this.hours = this.date.getHours();
+        this.hours = this.date.getHours() % 12;
         this.minutes = this.date.getMinutes();
         this.seconds = this.date.getSeconds();
         this.printTime();
@@ -36,6 +36,17 @@ class Clock {
     _tick() {
         // let that = this;
         this.seconds++;
+        if (this.seconds === 60) {
+            this.minutes++
+            this.seconds = 0
+            if (this.minutes === 60) {
+                this.hours++
+                this.minutes = 0
+                if (this.hours === 12) {
+                    this.hours = 0
+                }
+            }
+        }
         // console.log(this);
         this.printTime();
     }
